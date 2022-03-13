@@ -1,0 +1,36 @@
+<template>
+  <span>hello</span>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      essay: [],
+      queryInfo: {
+        pageNum: 1, //当前页
+        pageSize: 6, //每页最大数
+      },
+    };
+  },
+  components: {},
+  created() {
+    this.getAllEssay();
+  },
+  methods: {
+    getAllEssay() {
+      this.$api.getAllEssay(this.queryInfo).then((res) => {
+        this.essay = res.data.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    },
+  },
+  mounted() {
+    console.log(this.essay);
+  },
+};
+</script>
+<style scoped>
+</style>

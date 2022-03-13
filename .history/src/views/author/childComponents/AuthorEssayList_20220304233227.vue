@@ -1,0 +1,117 @@
+<template>
+  <div id="author_essay_list">
+    <div class="author_essay_title">
+      <span>他的文章</span>
+    </div>
+
+    <div class="author_list">
+      <div
+        class="author__essay_list_item"
+        v-for="(item, index) in essay"
+        :key="index"
+      >
+        <span> {{ item.title }}</span>
+        <span> {{ item.kpi.watch | countNums }} 点赞 · </span>
+        <span> {{ item.kpi.comments | countNums }} 评论 · </span>
+        <span>{{ item.datetime | formatTime }}</span>
+      </div>
+
+      <!-- 分页组件 size-change每页最大变化数 current-change当前最大变化数 layout功能组件-->
+      <div>
+        <el-pagination
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page="queryInfo.pageNum"
+          :page-sizes="[1, 2, 4, 100]"
+          :page-size="queryInfo.pageSize"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="total"
+          style="margin-left: 30px"
+        >
+        </el-pagination>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import toEssay from "@/js/toEssay";
+
+import countNums from "@/filters/countNums";
+import formatTime from "@/filters/formatTime";
+
+export default {
+  props: {
+    essay: {
+      type: Array,
+      default() {
+        return [];
+      },
+    },
+  },
+  filters: {
+    countNums,
+    formatTime,
+  },
+  data() {
+    return {
+      essay_list: this.essay,
+      // 查询信息实体
+      queryInfo: {
+        query: "", //查询信息
+        pageNum: 1, //当前页
+        pageSize: 4, //每页最大数
+      },
+    };
+  },
+  methods: {
+    toEssay,
+    // 最大数
+    handleSizeChange(newSize) {
+      this.queryInfo.pageSize = newSize;
+      if (this.queryInfo.query == "校内") {
+        this.getAreaInside();
+      } else if (this.queryInfo.query == "校外") {
+        this.getAreaOutside();
+      } else {
+        this.getOwnerList();
+      }
+    },
+    // pageNum的触发功能
+    handleCurrentChange(newPage) {
+      this.queryInfo.pageNum = newPage;
+      
+    },
+  },
+  mounted() {},
+};
+</script>
+
+<style scoped>
+.author_essay_title {
+  position: relative;
+
+  height: 45px;
+
+  padding: 5px 15px;
+
+  border-bottom: 1px solid #f6f6f6;
+}
+.author_essay_title span {
+  position: absolute;
+
+  top: 30%;
+
+  font-size: 15px;
+}
+
+.author_list {
+  padding: 15px;
+}
+
+.author_list .author_list_item {
+  border-bottom: 1px solid #f6f6f6;
+
+  padding: 15px;
+}
+</style>

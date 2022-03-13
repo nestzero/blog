@@ -1,0 +1,53 @@
+<template>
+  <div id="first-comment">
+    <div class="first-comment-list">
+      <div 
+      class="first-comment-list-item"
+      v-for="(item,index) in comment"
+      :key="index"
+      >
+        <span>{{item.author.authorname}}</span>
+        <span>: {{item.content}}</span>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  props:{
+    comment:{
+      type:Array,
+      default(){
+        return []
+      }
+    }
+  }
+}
+</script>
+
+<style scoped>
+#first-comment{
+  
+  width: 762px;
+
+  background-color: #f4f4f4;
+
+  margin-left: 60px;
+}
+.first-comment-list{
+
+  padding: 0 12px;
+}
+.first-comment-list-item span:nth-child(1) {
+
+  color: #008b1d;
+  font-size: 12px;
+
+  padding: 12px 0;
+}
+.first-comment-list-item span:nth-child(2){
+  color: #b4b4b4;
+  font-size: 14px;
+}
+</style>

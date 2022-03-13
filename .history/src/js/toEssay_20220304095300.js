@@ -1,0 +1,25 @@
+export default function toEssay(path,item) {
+  console.log(item);
+
+  if (this.$route.path == '/home') {
+
+    let { href } = this.$router.resolve(
+      {
+        path:'/essay',
+        query:{
+          essay:item
+        }
+    });
+    window.open(href, '_blank');
+  }else if(this.$route.path == path){
+    this.$router.push({
+      path:path,
+      query:{
+        essay:item
+      }
+    });
+  }else{
+    this.$router.push(path);
+  }
+
+}

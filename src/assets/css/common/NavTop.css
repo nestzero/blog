@@ -1,0 +1,66 @@
+#nav-top {
+  width: 1142px;
+  height: 50px;
+
+  margin: auto;
+}
+#nav-top span {
+  float: left;
+
+  font-size: 20px;
+  font-family: "Microsoft Yahei";
+  line-height: 50px;
+}
+.nav-list {
+  float: left;
+
+  width: 360px;
+  height: 50px;
+
+  margin-left: 50px;
+}
+.nav-list .nav-list-item {
+  display: inline-block;
+
+  width: 70px;
+
+  font-size: 16px;
+  line-height: 50px;
+  text-align: center;
+
+  margin: 0 5px;
+}
+.nav-list-item:nth-child(2) {
+  margin: 0 10px;
+}
+.nav-list-item:hover {
+  color: #04c4fc;
+  cursor: pointer;
+}
+
+.right-signin {
+  float: right;
+  position: relative;
+
+  width: 50px;
+  height: 50px;
+
+  line-height: 50px;
+
+  margin-right: 50px;
+}
+.right-signin .signin-avatar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  margin-top: -18px;
+  margin-left: -25px;
+}
+.dropdown-menu{
+  margin-right: -30px;
+}
+
+.checked {
+  color: #04c4fc !important;
+}

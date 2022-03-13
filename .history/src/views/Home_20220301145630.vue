@@ -1,0 +1,6 @@
+<template>
+  <span>hello</span>
+</template>
+
+<script>
+</script>

@@ -9,8 +9,6 @@
 </template>
 
 <script>
-import NavTop from "@/components/common/NavTop";
-import Essay from "@/components/content/content/essay";
 
 export default {
   data() {
@@ -19,8 +17,8 @@ export default {
     };
   },
   components: {
-    NavTop,
-    Essay,
+    NavTop:() => import("@/components/common/NavTop"),
+    Essay:() => import("@/components/content/content/essay"),
   },
   created() {
   },

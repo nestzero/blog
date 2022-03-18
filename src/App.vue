@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-    <router-view v-if="isRouterAlive" :key="this.$route.query.id"/>
+    
+    <keep-alive>
+      <router-view v-if="isRouterAlive" :key="this.$route.query.id"/>
+    </keep-alive>
+    
   </div>
 </template>
 

@@ -5,14 +5,10 @@
     </div>
 
     <author-about :essay="essay"></author-about>
-
   </div>
 </template>
 
 <script>
-import NavTop from "@/components/common/NavTop";
-import AuthorAbout from "@/components/content/author/AuthorAbout";
-
 import getEssayByAuthorId from "@/js/getEssayByAuthorId";
 
 export default {
@@ -28,11 +24,10 @@ export default {
     };
   },
   components: {
-    NavTop,
-    AuthorAbout,
+    NavTop: () => import("@/components/common/NavTop"),
+    AuthorAbout: () => import("@/components/content/author/AuthorAbout"),
   },
-  created() {
-  },
+  created() {},
   methods: {
     getEssayByAuthorId,
   },

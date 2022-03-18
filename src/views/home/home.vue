@@ -15,26 +15,20 @@
 </template>
 
 <script>
-import NavTop from "@/components/common/NavTop";
-import HomeContent from "@/components/content/home/HomeContent";
-
-import {backTopBtn,backTop} from '@/js/backTop';
+import { backTopBtn, backTop } from "@/js/backTop";
 
 export default {
   data() {
-    return {
-      
-    };
+    return {};
   },
   components: {
-    NavTop,
-    HomeContent,
+    NavTop: () => import("@/components/common/NavTop"),
+    HomeContent: () => import("@/components/content/home/HomeContent"),
   },
-  created() {
-  },
+  created() {},
   methods: {
     backTopBtn,
-    backTop
+    backTop,
   },
   mounted() {
     window.addEventListener("scroll", this.backTopBtn, true);

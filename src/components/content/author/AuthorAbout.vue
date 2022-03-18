@@ -10,7 +10,7 @@
           class="author_about_list_item"
           v-for="(item, index) in author_about_list"
           :key="index"
-          @click="toListByPath(item.path,essay[0].author.authorid)"
+          @click="toListByPath(item.path, essay[0].author.authorid)"
         >
           <i :class="item.icon"></i>
           <span> {{ item.name }}</span>
@@ -19,16 +19,28 @@
     </div>
 
     <div class="author_list" v-if="this.$route.path === '/author_essay_list'">
-      <author-essay-list></author-essay-list>
+      <author-essay-list>
+        <div slot="essays" class="title">
+          <span>{{ title }}</span>
+        </div>
+      </author-essay-list>
     </div>
     <div
       class="author_list"
       v-else-if="this.$route.path === '/author_stars_list'"
     >
-      <author-stars-list></author-stars-list>
+      <author-stars-list>
+        <div slot="stars" class="title">
+          <span>{{ title }}</span>
+        </div>
+      </author-stars-list>
     </div>
     <div class="author_list" v-else>
-      <author-comments-list></author-comments-list>
+      <author-comments-list>
+        <div slot="comments" class="title">
+          <span>{{ title }}</span>
+        </div>
+      </author-comments-list>
     </div>
   </div>
 </template>
@@ -74,23 +86,48 @@ export default {
           icon: "el-icon-chat-round",
         },
       ],
+      title: "他的文章",
     };
   },
   created() {},
   methods: {
-    toListByPath(path,id) {
+    toListByPath(path, id) {
+      if (path === "/author_stars_list") {
+        this.title = "他的收藏";
+      } else if (path === "/author_comments_list") {
+        this.title = "他的评论";
+      } else {
+        this.title = "他的文章";
+      }
+
       this.$router.push({
         path: path,
-        query:{id:id}
+        query: { id: id },
       });
     },
   },
-  mounted() {
-  },
+  mounted() {},
 };
 </script>
 
 <style scoped>
+.title {
+  position: relative;
+
+  height: 45px;
+
+  padding: 5px 15px;
+
+  border-bottom: 1px solid #f6f6f6;
+}
+.title span {
+  position: absolute;
+
+  top: 30%;
+
+  font-size: 15px;
+}
+
 #author-content {
   width: 1142px;
   height: 650px;

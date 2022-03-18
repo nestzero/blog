@@ -24,5 +24,6 @@ export function backTop() {
     if (document.documentElement.scrollTop <= 0) {
       clearInterval(timeSwitch);
     }
+
   }, 20);
 }
